@@ -3,22 +3,22 @@ use std::error::Error;
 use serde::Deserialize;
 
 #[allow(non_camel_case_types)]
-#[derive(Debug, PartialEq, Deserialize)]
+#[derive(Debug, PartialEq, Deserialize, Copy, Clone)]
 pub enum YN {
     yes,
     no,
 }
 
 #[allow(non_snake_case)]
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone)]
 pub struct Element {
     pub atomic_number: u8,
     pub element: String,
     pub symbol: String,
     pub atomic_mass: f32,
-    pub number_of_neutrons: u8,
-    pub number_of_protons: u8,
-    pub number_of_electrons: u8,
+    pub number_of_neutrons: u16,
+    pub number_of_protons: u16,
+    pub number_of_electrons: u16,
     pub period: u8,
     pub group: Option<u8>,
     pub phase: String,
@@ -42,20 +42,18 @@ pub struct Element {
     pub number_of_valence: Option<u8>,
 }
 
-pub fn load_as_v() -> Result<Vec<Element>, Box<dyn Error>> {
+pub fn load_as_vector() -> Result<Vec<Element>, Box<dyn Error>> {
     // load CSV
     let reader = std::fs::File::open("elements.csv").unwrap();
     let mut rdr = csv::Reader::from_reader(reader);
 
-    // hash and v
+    // create a vector of structs
     let mut v: Vec<Element> = Vec::new();
 
     for result in rdr.deserialize() {
         let record: Element = result?;
-        //println!("{:?}", record);
         v.push(record);
     }
-    //println!("{:?}", v);
 
     Ok(v)
 }
