@@ -1,0 +1,3 @@
+n=10000, #threads=2, mono_threaded=27.327854ms, 2_threaded=12.279269ms, ratio=0.44
+n=10000, #threads=3, mono_threaded=25.172511ms, 3_threaded=10.00356ms, ratio=0.40
+n=10000, #threads=4, mono_threaded=25.057633ms, 4_threaded=12.993988ms, ratio=0.48

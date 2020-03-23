@@ -1,0 +1,25 @@
+[package]
+name = "rthreads"
+version = "0.1.0"
+authors = ["dandyvica <dandyvica@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+crossbeam = "0.7.1"
+num = "0.2.0"
+
+[[bin]]
+name = "thread1"
+path = "src/thread_without_crate/thread1.rs"
+
+[[bin]]
+name = "thread2"
+path = "src/thread_with_crossbeam/thread2.rs"
+
+[[bin]]
+name = "thread_compare"
+path = "src/together/thread_compare.rs"
+
+[[bin]]
+name = "fact"
+path = "src/factorial/fact.rs"
