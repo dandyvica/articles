@@ -1,0 +1,63 @@
+---
+- hosts: ubuntu
+  gather_facts: yes
+  become_user: root
+  tasks:
+
+  # launch apt package update
+  - name: Update package list
+    apt: 
+      update_cache: yes
+
+  # launch upgrade to install latest packages
+  - name: Upgrade packages
+    apt: 
+      upgrade: yes
+
+  - name: Install git
+    apt: 
+      name: git
+      state: latest
+
+  - name: Install zsh
+    apt: 
+      name: zsh
+      state: latest
+
+  - name: Install vim editor
+    apt: 
+      name: vim
+      state: latest
+
+  #-----------------------------------------------------------
+  # configure installed packages
+  #-----------------------------------------------------------
+
+  - name: Install my dotfiles .vimrc and .zshrc
+    ansible.builtin.git:
+      repo: https://github.com/dandyvica/dotfiles.git
+      dest: /root/dotfiles
+
+  - name: Make symbolic with .vimrc
+    file:
+      src: /root/dotfiles/vimrc
+      dest: /root/.vimrc
+      state: link
+
+  - name: Make symbolic with .zshrc
+    file:
+      src: /root/dotfiles/zshrc
+      dest: /root/.zshrc
+      state: link
+
+  #-----------------------------------------------------------
+  # install oh my zsh
+  #-----------------------------------------------------------
+  - name: Install Oh My ZSH
+    git:
+      repo: 'git://github.com/robbyrussell/oh-my-zsh.git'
+      dest: ~/.oh-my-zsh
+
+
+  # - name: Install git
+  #   apt: pkg=git state=present

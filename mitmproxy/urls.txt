@@ -1,0 +1,16 @@
+scorecardresearch\.com
+geo\.yahoo\.com
+adversting\.
+ads\.
+\.taboola\.
+\.doubleclick\.
+\.xiti\.
+criteo
+\.pubmatic\.
+\.chartbeat\.net
+\.twimg\.com
+\.keywee\.co
+\.\w+adserver\.com
+outbrain
+\.jpg$
+\.bouncex\.
